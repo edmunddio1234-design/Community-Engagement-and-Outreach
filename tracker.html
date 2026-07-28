@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outreach Tracker · Community Engagement & Outreach</title>
+<meta name="description" content="Live checklist of every call, vendor booth and parish meeting across the eight parishes.">
+<link rel="stylesheet" href="css/site.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html">Community Engagement &amp; Outreach<span>Lighthouse Rural Community</span></a>
+  <a class="l" href="index.html">Strategy</a><a class="l" href="parishes.html">The 8 Parishes</a><a class="l" href="events.html">Events & Tables</a><a class="l" href="contacts.html">Contacts</a><a class="l" href="media.html">Media & Marketing</a><a class="l on" href="tracker.html">Tracker</a>
+</div></nav>
+<header class="hero"><div class="wrap"><div class="kick">Live checklist</div><h1>The tracker</h1><p>Every call, booth and meeting in this plan, in priority order, with a status, an owner, a date and a notes field. Tick as you go &mdash; progress saves in this browser. Use <b>Save file</b> to keep a copy or hand it to somebody else.</p></div></header>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&display=swap');
+
+:root{
+  --purple:#2E1248; --purple2:#4C1D6B; --purple3:#6B3A94;
+  --gold:#F4B41A; --gold-d:#C98A00;
+  --green:#1B6B3A; --green-l:#2E9E54;
+  --red:#B3261E; --amber:#B77500; --blue:#1B4C86;
+  --ink:#1A1426; --muted:#4A4458; --line:#E4E0EC;
+  --bg:#EFECF5; --card:#fff; --alt:#F7F5FB;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.5}
+.dsp{font-family:'Outfit',sans-serif}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(160deg,#2E1248 0%,#4C1D6B 100%);color:#fff;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;top:-160px;right:-90px;width:460px;height:460px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(244,180,26,.28),rgba(244,180,26,0) 70%)}
+.hwrap{max-width:1240px;margin:0 auto;padding:26px 22px 24px;position:relative;z-index:2}
+.kicker{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:800;color:var(--gold);margin-bottom:8px}
+h1{font-family:'Outfit',sans-serif;font-size:clamp(1.5rem,3.4vw,2.15rem);font-weight:900;margin:0 0 6px;line-height:1.1}
+.sub{color:#E3D9F2;font-size:14.5px;max-width:760px;margin:0}
+.hrow{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-top:20px}
+
+.ring{width:96px;height:96px;flex:none;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .pct{font-family:'Outfit',sans-serif;font-weight:900;font-size:22px;line-height:1}
+.ring .cap{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#CDBCE6;margin-top:2px}
+
+.mini{display:flex;gap:10px;flex-wrap:wrap}
+.mini div{background:rgba(255,255,255,.10);border:1px solid rgba(244,180,26,.36);border-radius:12px;
+  padding:9px 14px;min-width:96px}
+.mini b{font-family:'Outfit',sans-serif;font-size:19px;font-weight:800;display:block;line-height:1.1}
+.mini span{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#D9CBEE}
+
+/* ---------- deadline strip ---------- */
+.deadlines{max-width:1240px;margin:20px auto 0;padding:0 22px;display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.dl{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:14px;
+  padding:15px 17px;box-shadow:0 2px 12px rgba(46,18,72,.06)}
+.dl.ok{border-top-color:var(--green)}
+.dl .t{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:var(--purple)}
+.dl .w{font-size:12.5px;color:var(--muted);margin:3px 0 8px}
+.dl .cd{font-family:'Outfit',sans-serif;font-weight:900;font-size:26px;color:var(--red);line-height:1}
+.dl.ok .cd{color:var(--green)}
+.dl .cd small{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.dl a{color:var(--purple2);font-weight:700;font-size:12.5px;text-decoration:none}
+.dl a:hover{text-decoration:underline}
+
+/* ---------- controls ---------- */
+.bar{max-width:1240px;margin:22px auto 0;padding:0 22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar input[type=search],.bar select{font-family:inherit;font-size:13.5px;color:var(--ink);background:#fff;
+  border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.bar input[type=search]{flex:1;min-width:200px}
+.btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.02em;
+  background:var(--purple);color:#fff;border:none;border-radius:999px;padding:10px 17px;cursor:pointer}
+.btn:hover{background:var(--purple2)}
+.btn.alt{background:#fff;color:var(--purple);border:1px solid var(--gold-d)}
+.btn.alt:hover{background:#FFFBF0}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.chip{font-family:'Outfit',sans-serif;font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted)}
+.chip.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+
+/* ---------- tracks ---------- */
+main{max-width:1240px;margin:0 auto;padding:8px 22px 60px}
+.track{margin-top:26px}
+.thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.thead h2{font-family:'Outfit',sans-serif;font-size:19px;font-weight:800;color:var(--purple);margin:0}
+.thead .n{font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold-d)}
+.tdesc{font-size:13.5px;color:var(--muted);margin:0 0 10px;max-width:840px}
+.pbar{height:7px;background:#E2DCEC;border-radius:99px;overflow:hidden;margin-bottom:14px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--green-l));
+  border-radius:99px;transition:width .3s ease}
+
+/* ---------- items ---------- */
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;
+  box-shadow:0 1px 6px rgba(46,18,72,.04);transition:opacity .2s}
+.item.done{opacity:.55;background:var(--alt)}
+.item.done .title{text-decoration:line-through;text-decoration-color:var(--muted)}
+.item.urgent{border-left:5px solid var(--red)}
+.cb{width:22px;height:22px;accent-color:var(--green);cursor:pointer;margin-top:2px}
+.title{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;color:var(--purple);margin:0 0 3px}
+.detail{font-size:13.3px;color:var(--muted);margin:0 0 8px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.tag{font-family:'Outfit',sans-serif;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;background:#F1EEF6;color:var(--purple2)}
+.tag.v{background:#E6F3EB;color:var(--green)}
+.tag.c{background:#FFF6E2;color:var(--gold-d)}
+.tag.p{background:#FBE9E7;color:var(--red)}
+.tag.due{background:#EAF1FA;color:var(--blue)}
+.contact{font-size:12.6px;color:var(--ink);background:var(--alt);border:1px solid var(--line);
+  border-radius:9px;padding:7px 11px;margin-bottom:9px;word-break:break-word}
+.contact a{color:var(--purple2);font-weight:600;text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row select,.row input{font-family:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:8px;
+  padding:6px 9px;background:#fff;color:var(--ink)}
+.row input.note{flex:1;min-width:180px}
+.row label{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  font-family:'Outfit',sans-serif;font-weight:700}
+select.st-notstarted{color:var(--muted)}
+select.st-called{color:var(--blue);font-weight:600}
+select.st-waiting{color:var(--amber);font-weight:600}
+select.st-confirmed{color:var(--green);font-weight:700}
+select.st-declined{color:var(--red);font-weight:600}
+
+.empty{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:30px;text-align:center;color:var(--muted)}
+footer{max-width:1240px;margin:0 auto;padding:0 22px 50px;color:var(--muted);font-size:12.4px}
+.note-box{background:#FFFBF0;border:1px solid var(--line);border-left:5px solid var(--gold);
+  border-radius:12px;padding:14px 17px;margin-top:24px;font-size:13.3px;color:var(--ink)}
+@media print{
+  header:after{display:none}
+  .bar,.btn,.chip{display:none!important}
+  .item{break-inside:avoid;box-shadow:none}
+  body{background:#fff}
+}
+
+body{background:var(--bg)}
+main{padding-top:6px}</style><div style="max-width:1240px;margin:0 auto">
+
+<div class="deadlines" id="deadlines"></div>
+
+<div class="bar">
+  <input type="search" id="q" placeholder="Search &mdash; name, parish, phone, town&hellip;">
+  <select id="fParish"><option value="">All parishes</option></select>
+  <select id="fTrack"><option value="">All tracks</option></select>
+  <select id="fStatus">
+    <option value="">Any status</option>
+    <option value="notstarted">Not started</option>
+    <option value="called">Called</option>
+    <option value="waiting">Waiting on them</option>
+    <option value="confirmed">Confirmed</option>
+    <option value="declined">Declined / N/A</option>
+  </select>
+  <button class="chip" id="cOpen">Open only</button>
+  <button class="chip" id="cUrgent">Urgent only</button>
+  <button class="btn alt" id="bCsv">Export CSV</button>
+  <button class="btn alt" id="bJson">Save file</button>
+  <button class="btn alt" id="bLoad">Load file</button>
+  <button class="btn ghost" id="bPrint">Print</button>
+  <button class="btn ghost" id="bReset">Reset</button>
+  <input type="file" id="fileIn" accept="application/json" hidden>
+</div>
+
+<main id="app"></main>
+
+</div><script>
+/* ============================ DATA ============================ */
+const TRACKS = [
+  {id:"fairs",  name:"1 · Autumn fair run",       desc:"Three parish fairs inside twenty-two days, all three taking vendor booths. One banner, one table kit, three parishes. Nothing else on this list comes close to the reach per dollar — and these are the only hard deadlines."},
+  {id:"events", name:"2 · Other events & festivals", desc:"The spring festivals already ran in 2026, so these are 2027 applications. The organisations that get booths are the ones that ask in the autumn, not the week before."},
+  {id:"clerks", name:"3 · Clerks of court",       desc:"Louisiana clerks record a veteran's honorable discharge free of charge, confidentially. Every office below is a room where veterans identify themselves holding the exact document your intake asks for. The ask is a card holder on the counter and one sentence from the clerk."},
+  {id:"gov",    name:"4 · Parish governing bodies", desc:"Fifteen minutes on a public agenda puts the enterprise in the official minutes — a public record you can show a funder. Agendas are set about a week ahead, so call ten days out. Do not ask for money; ask for a parking lot, a liaison, and a line in the emergency plan."},
+  {id:"ldva",   name:"5 · State veterans service officers", desc:"Already funded, already staffed, already trusted. Several run itinerant points — fixed days at a satellite location. Parking the M-TOC beside one costs nothing and doubles the value of a trip the veteran was already making."},
+  {id:"aging",  name:"6 · Aging network",         desc:"A rare piece of luck: all eight parishes sit inside one Area Agency on Aging. One relationship reaches every senior centre in the footprint."},
+  {id:"faith",  name:"7 · Faith track",           desc:"Eight parishes is several hundred congregations. Work the associations, not the churches — one Associational Mission Strategist reaches dozens of pastors in a single call."},
+];
+
+// status: verified | call | passed   (source confidence, not progress)
+const ITEMS = [
+ /* ---- FAIRS ---- */
+ {t:"fairs", n:"St. Tammany Parish Fair — book the booth", p:"St. Tammany",
+  d:"Sept 30 – Oct 4, 2026 · Covington. Commercial/retail, crafts and food booths. The nearest deadline you have.",
+  c:'Phone <a href="tel:9858928421">(985) 892-8421</a> · <a href="https://sttammanyparishfair.info" target="_blank" rel="noopener">sttammanyparishfair.info</a> · 1304 N. Columbia St, Covington',
+  s:"verified", due:"2026-09-30", urgent:true},
+ {t:"fairs", n:"Livingston Parish Fair — book the booth", p:"Livingston",
+  d:"Oct 6 – 11, 2026 · Fairground Rd off Hwy 190, Livingston. Vendor section advertised; the form is not published, so this one needs a call.",
+  c:'<a href="https://livingstonparishfair.com" target="_blank" rel="noopener">livingstonparishfair.com</a>',
+  s:"call", due:"2026-10-06", urgent:true},
+ {t:"fairs", n:"Washington Parish Free Fair — submit the vendor form", p:"Washington",
+  d:"Oct 21 – 25, 2026 · Franklinton. Billed as the largest free fair in the country. Inside and outside booths; the 2026 commercial building form is live and confirmations go out by mail, so early matters.",
+  c:'Chanda Thomassen <a href="tel:9855151591">985-515-1591</a> · Alyce Johnson <a href="tel:9853358737">985-335-8737</a> · <a href="mailto:wpffcb@gmail.com">wpffcb@gmail.com</a> · fair office <a href="tel:9852950911">985-295-0911</a> · <a href="https://www.freefair.com/information" target="_blank" rel="noopener">freefair.com</a>',
+  s:"verified", due:"2026-10-21", urgent:true},
+ {t:"fairs", n:"Build the table kit before the first fair", p:"All eight",
+  d:"Earned card (what the M-TOC does, bring your DD-214, the number, next three dates) · sign-up sheet · intake QR code · one banner with the phone number readable at ten feet · a veteran on the table, not a staffer · nothing with unverified numbers on it.",
+  c:"Internal — Operations",
+  s:"verified", due:"2026-09-20", urgent:true},
+
+ /* ---- EVENTS ---- */
+ {t:"events", n:"Christmas in the Country", p:"West Feliciana",
+  d:"December 2026, four days, St. Francisville. The last table opportunity of 2026 if it takes vendors. Terms not published.",
+  c:'<a href="http://stfrancisvillefestivals.com" target="_blank" rel="noopener">stfrancisvillefestivals.com</a>', s:"call", due:"2026-11-01"},
+ {t:"events", n:"Covington Three Rivers Art Festival", p:"St. Tammany",
+  d:"November 2026. Juried art show and arts mall; nonprofit table terms unclear.",
+  c:'<a href="https://www.gocovington.org/events" target="_blank" rel="noopener">gocovington.org</a>', s:"call", due:"2026-10-01"},
+ {t:"events", n:"BREC community events — vendor inquiry", p:"East Baton Rouge",
+  d:"Year-round free family events in parks across the parish. BREC publicly invites vendor inquiries — the easiest recurring slot in the largest parish.",
+  c:'<a href="https://www.brec.org/communityevents" target="_blank" rel="noopener">brec.org/communityevents</a>', s:"verified", due:""},
+ {t:"events", n:"Farmers markets — Hammond, Ponchatoula, Covington, Baton Rouge", p:"Multiple",
+  d:"Weekly and year-round. Lowest cost and highest frequency on the whole list; good for building a rhythm people can learn.",
+  c:"Each city / market manager", s:"call", due:""},
+ {t:"events", n:"Feliciana Wildflower Festival — get on the 2027 vendor list", p:"East Feliciana",
+  d:"Early June 2027, downtown Clinton by the historic courthouse. Drew about 5,000 people in 2026. This is your anchor town's own festival — do not miss it twice.",
+  c:'<a href="https://www.facebook.com/FelicianaWildflowerProject" target="_blank" rel="noopener">facebook.com/FelicianaWildflowerProject</a>', s:"passed", due:"2027-03-01"},
+ {t:"events", n:"Ponchatoula Strawberry Festival — nonprofit booth", p:"Tangipahoa",
+  d:"April 2027. Over 40 booths are reserved for nonprofits registered with the Louisiana Secretary of State — check that registration is current before applying.",
+  c:"Booth Chairman, PO Box 446, Ponchatoula LA 70454 · <a href=\"https://www.lastrawberryfestival.com/booths\" target=\"_blank\" rel=\"noopener\">lastrawberryfestival.com/booths</a>", s:"passed", due:"2026-12-01"},
+ {t:"events", n:"Amite Oyster Festival", p:"Tangipahoa",
+  d:"March 2027. Exhibitor categories include “corp./information” — which is exactly what your table is.",
+  c:'<a href="https://www.amiteoysterfestival.com/" target="_blank" rel="noopener">amiteoysterfestival.com</a>', s:"passed", due:"2026-12-01"},
+ {t:"events", n:"Independence Sicilian Heritage Festival", p:"Tangipahoa",
+  d:"March 2027. Parade, pageant, cook-off. Vendor terms not published.",
+  c:"307 E. Railroad Ave, Independence LA 70443", s:"passed", due:"2027-01-01"},
+ {t:"events", n:"Denham Springs Spring Festival & Food Truck Festival", p:"Livingston",
+  d:"March–April 2027, historic downtown Denham Springs. Antiques, collectibles and crafts vendors.",
+  c:"City of Denham Springs", s:"passed", due:"2027-01-15"},
+ {t:"events", n:"Walker Easter in the Park", p:"Livingston",
+  d:"March 2027, Sidney Hutchinson Park. Described as hundreds of vendors, games and food booths.",
+  c:"City of Walker", s:"passed", due:"2027-01-15"},
+ {t:"events", n:"Northshore festival circuit", p:"St. Tammany",
+  d:"Slidell Heritage, Mandeville Seafood, Wooden Boat, Louisiana Crawfish. Each has its own producer; the tourism board lists them all.",
+  c:'<a href="https://www.visitthenorthshore.com/events/annual-events/" target="_blank" rel="noopener">visitthenorthshore.com</a>', s:"call", due:""},
+ {t:"events", n:"Angola Prison Rodeo craft market", p:"West Feliciana",
+  d:"April and October weekends. Very large crowds. Corrections-run, so access and vetting rules apply — ask early.",
+  c:"Louisiana State Penitentiary", s:"call", due:""},
+ {t:"events", n:"Veterans Day & Memorial Day ceremonies — every town", p:"All eight",
+  d:"Nov 11 and May 25. Run by VFW and American Legion posts and town halls, usually free to a veteran-serving nonprofit. Highest-intent audience of the year.",
+  c:"Each town hall and local post", s:"call", due:"2026-10-10"},
+ {t:"events", n:"LDVA Veterans Career & Education Fair", p:"East Baton Rouge",
+  d:"State-run, announced annually; previously held at American Legion Post 38 in Baton Rouge. Ask to be listed as a resource table.",
+  c:'LDVA <a href="tel:2252195000">(225) 219-5000</a> · <a href="mailto:veteran@la.gov">veteran@la.gov</a>', s:"call", due:""},
+
+ /* ---- CLERKS ---- */
+ {t:"clerks", n:"East Feliciana — Hon. David Dart", p:"East Feliciana",
+  d:"Anchor parish. Start the clerk track here.",
+  c:'12305 St. Helena St., Clinton LA 70722 · P.O. Drawer 599 · <a href="tel:2256835145">(225) 683-5145</a>', s:"verified", due:""},
+ {t:"clerks", n:"West Feliciana — Hon. Stewart Hughes", p:"West Feliciana",
+  d:"", c:"4785 Prosperity St., St. Francisville LA 70775 · P.O. Box 1843", s:"verified", due:""},
+ {t:"clerks", n:"Tangipahoa — Hon. Gary T. Stanga", p:"Tangipahoa",
+  d:"", c:"110 N. Bay St., Ste. 100, Amite LA 70422 · P.O. Box 667", s:"verified", due:""},
+ {t:"clerks", n:"Washington", p:"Washington",
+  d:"Clerk name not confirmed — ask when you call.",
+  c:'908-B Washington St., Franklinton LA 70438 · P.O. Box 607 · <a href="tel:9858394663">(985) 839-4663</a>', s:"verified", due:""},
+ {t:"clerks", n:"Livingston", p:"Livingston",
+  d:"Clerk name and phone not confirmed.", c:"P.O. Box 1150, Livingston LA 70754", s:"call", due:""},
+ {t:"clerks", n:"St. Helena", p:"St. Helena",
+  d:"Clerk name and phone not confirmed.", c:"P.O. Box 308, Greensburg LA 70441", s:"call", due:""},
+ {t:"clerks", n:"St. Tammany", p:"St. Tammany",
+  d:"Clerk name and phone not confirmed.", c:"P.O. Box 1090, Covington LA 70434-1090", s:"call", due:""},
+ {t:"clerks", n:"East Baton Rouge", p:"East Baton Rouge",
+  d:"Largest parish; expect a more formal process.",
+  c:'<a href="https://www.ebrclerk.com/" target="_blank" rel="noopener">ebrclerk.com</a>', s:"call", due:""},
+
+ /* ---- GOVERNMENT ---- */
+ {t:"gov", n:"East Feliciana Parish Police Jury — request agenda time", p:"East Feliciana",
+  d:"Anchor parish, so go here first. Meetings are livestreamed and archived, which means your presentation has a permanent public record.",
+  c:'12064 Marston St., Clinton LA 70722 · <a href="tel:2256838577">(225) 683-8577</a> · Pres. Louis Kent · <a href="https://efparish.org/3880-2/agenda-and-minutes/" target="_blank" rel="noopener">efparish.org</a>', s:"verified", due:""},
+ {t:"gov", n:"Tangipahoa Parish Council — request agenda time", p:"Tangipahoa",
+  d:"2nd & 4th Mondays, 5:30 pm. Broadcast on Charter 197 and U-verse 99.",
+  c:'206 E. Mulberry St., Amite LA 70422 · <a href="tel:9857483211">(985) 748-3211</a> · <a href="https://tangipahoa.org/government/council/meeting-calendar/" target="_blank" rel="noopener">tangipahoa.org</a>', s:"verified", due:""},
+ {t:"gov", n:"Washington Parish Council — request agenda time", p:"Washington",
+  d:"2nd & 4th Mondays, 6:00 pm, Courthouse first floor, Franklinton. Agenda is posted on the government office door the Thursday before — so ask well ahead. Pair this trip with Tangipahoa; same days.",
+  c:'<a href="https://www.wpgov.org/198" target="_blank" rel="noopener">wpgov.org</a>', s:"verified", due:""},
+ {t:"gov", n:"Livingston Parish Council — request agenda time", p:"Livingston",
+  d:"2nd & 4th Thursdays, 6:00 pm. Same weeks as Tangipahoa and Washington but a different day — no conflict.",
+  c:'20355 Government Blvd., Livingston · <a href="https://www.livingstonparishcouncil.com/council/page/meeting-information" target="_blank" rel="noopener">livingstonparishcouncil.com</a>', s:"verified", due:""},
+ {t:"gov", n:"St. Tammany Parish Council — request agenda time", p:"St. Tammany",
+  d:"Fourteen members. Larger parish, so expect a longer path to the agenda.",
+  c:'21490 Koop Dr., Mandeville LA 70471 · <a href="tel:9858982591">(985) 898-2591</a> · <a href="mailto:councilmembers@stpgov.org">councilmembers@stpgov.org</a>', s:"verified", due:""},
+ {t:"gov", n:"EBR Metropolitan Council — request agenda time", p:"East Baton Rouge",
+  d:"2nd & 4th Wednesdays, 4:00 pm, City Hall Room 348.",
+  c:'222 St. Louis St., Baton Rouge LA 70802 · <a href="https://www.brla.gov/561/Metropolitan-Council" target="_blank" rel="noopener">brla.gov</a>', s:"verified", due:""},
+ {t:"gov", n:"St. Helena Parish Police Jury — confirm the meeting day", p:"St. Helena",
+  d:"Regular sessions livestream at 6:00 pm; the recurring day is not published. Confirm from their calendar, then request agenda time.",
+  c:'<a href="https://www.sthelenaparish.la.gov/apps/events/" target="_blank" rel="noopener">sthelenaparish.la.gov</a>', s:"call", due:""},
+ {t:"gov", n:"West Feliciana — identify the governing body", p:"West Feliciana",
+  d:"Governing body, meeting schedule and agenda process all unconfirmed. Start with the clerk of court — in small parishes they always know.",
+  c:"St. Francisville", s:"call", due:""},
+ {t:"gov", n:"Mayors — the six asks, not money", p:"All eight",
+  d:"A parking lot · fifteen minutes on the agenda · a proclamation · a named liaison · a line in the parish emergency plan · a letter of support. Ask for the letter before you need it, not the week the application is due.",
+  c:"Each town hall", s:"verified", due:""},
+
+ /* ---- LDVA ---- */
+ {t:"ldva", n:"LDVA headquarters — get every itinerant schedule", p:"All eight",
+  d:"One call closes three blanks in this tracker and hands you free co-location dates across the whole region. Do this before planning any deployment calendar.",
+  c:'<a href="tel:2252195000">(225) 219-5000</a> · <a href="mailto:veteran@la.gov">veteran@la.gov</a>', s:"verified", due:"", urgent:false},
+ {t:"ldva", n:"Washington — Bogalusa office", p:"Washington",
+  d:"Mon–Wed 8:00–4:00.",
+  c:'202 Arkansas Ave., Bogalusa LA 70427 · <a href="tel:9857326607">(985) 732-6607</a> · <a href="mailto:james.lee3@la.gov">james.lee3@la.gov</a>', s:"verified", due:""},
+ {t:"ldva", n:"Washington — Franklinton itinerant point", p:"Washington",
+  d:"1st Tuesday of every month, 9:00–3:30. The clearest co-location opportunity in the region: the veterans are already driving in that day.",
+  c:'215 11th Ave., Franklinton LA 70438 · <a href="tel:9858393497">(985) 839-3497</a>', s:"verified", due:""},
+ {t:"ldva", n:"Livingston office", p:"Livingston",
+  d:"Mon, Tue, Thu, Fri 8:00–4:00 — closed Wednesday. Do not plan a Wednesday visit.",
+  c:'20140 Iowa St., Livingston LA 70754 · <a href="tel:2256863295">(225) 686-3295</a>', s:"verified", due:""},
+ {t:"ldva", n:"St. Tammany West — Covington", p:"St. Tammany",
+  d:"Counselor: Mike Perfinski.",
+  c:'1301 N. Florida St., Covington LA 70433 · <a href="tel:9858936201">(985) 893-6201</a>', s:"verified", due:""},
+ {t:"ldva", n:"St. Tammany East — Slidell", p:"St. Tammany",
+  d:"Counselor: Devon John.",
+  c:'520 Old Spanish Trail, Ste. 2E, Slidell LA 70458 · <a href="tel:9856453500">(985) 645-3500</a>', s:"verified", due:""},
+ {t:"ldva", n:"East Baton Rouge office", p:"East Baton Rouge",
+  d:"Counselor: Leketra Cole.",
+  c:'1755 Florida Blvd., 3rd Floor, Baton Rouge LA 70802 · <a href="mailto:leketra.cole@la.gov">leketra.cole@la.gov</a>', s:"verified", due:""},
+ {t:"ldva", n:"Tangipahoa itinerant point — find the location & day", p:"Tangipahoa",
+  d:"Listed in the LDVA directory but the location and schedule are not published.",
+  c:'LDVA <a href="tel:2252195000">(225) 219-5000</a>', s:"call", due:""},
+ {t:"ldva", n:"East/West Feliciana shared office — find the details", p:"Felicianas",
+  d:"Listed as a single East/West Feliciana service office; location and hours not published.",
+  c:'LDVA <a href="tel:2252195000">(225) 219-5000</a>', s:"call", due:""},
+ {t:"ldva", n:"St. Helena — establish who covers it", p:"St. Helena",
+  d:"No dedicated listing found. Likely served by an adjacent parish or an itinerant point.",
+  c:'LDVA <a href="tel:2252195000">(225) 219-5000</a>', s:"call", due:""},
+
+ /* ---- AGING ---- */
+ {t:"aging", n:"Capital Area Agency on Aging — the regional door", p:"All eight",
+  d:"Serves every one of your eight parishes as the Aging & Disability Resource Center. One relationship, eight parishes. Start here rather than calling councils one at a time.",
+  c:'<a href="https://www.capitalaaa.org/services-by-parish/" target="_blank" rel="noopener">capitalaaa.org</a>', s:"verified", due:""},
+ {t:"aging", n:"QUAD Area Community Action Agency", p:"Multiple",
+  d:"Serves East Feliciana, St. Helena, Tangipahoa and Washington — the four most rural of the eight.",
+  c:"45300 N. Baptist Rd., Hammond LA 70401", s:"verified", due:""},
+ {t:"aging", n:"West Feliciana Senior Center", p:"West Feliciana",
+  d:"", c:'12292 Jackson Rd., St. Francisville LA 70775 · <a href="tel:2256356719">(225) 635-6719</a>', s:"verified", due:""},
+ {t:"aging", n:"East Feliciana Council on Aging", p:"East Feliciana",
+  d:"Number published for transport scheduling; ask for the main line and the director.",
+  c:'<a href="tel:2256839862">(225) 683-9862</a>', s:"verified", due:""},
+ {t:"aging", n:"Remaining parish councils on aging", p:"Multiple",
+  d:"Livingston, St. Tammany, Tangipahoa, Washington and EBR offices not individually confirmed. Get them all from the Capital Area agency in one call.",
+  c:"via Capital Area Agency on Aging", s:"call", due:""},
+
+ /* ---- FAITH ---- */
+ {t:"faith", n:"Louisiana Baptists — Associational Mission Strategists", p:"All eight",
+  d:"A statewide body of more than 1,600 churches organised into local associations, each with a strategist whose job is connecting churches to work like yours. Six calls covers the region. Highest leverage per minute in this whole tracker.",
+  c:'<a href="https://louisianabaptists.org/about/associational-mission-strategists/" target="_blank" rel="noopener">louisianabaptists.org</a>', s:"verified", due:""},
+ {t:"faith", n:"Washington Baptist Association", p:"Washington",
+  d:"Publishes a pastor directory across Bogalusa, Franklinton and Angie — the fastest ready-made list you will find in the region.",
+  c:'<a href="https://basela.org/washington-baptist-association/" target="_blank" rel="noopener">basela.org</a>', s:"verified", due:""},
+ {t:"faith", n:"Eastern Louisiana Baptist Association", p:"Multiple",
+  d:"Confirm which of the eight parishes fall inside its territory before writing.",
+  c:'<a href="https://elbamissions.org/" target="_blank" rel="noopener">elbamissions.org</a>', s:"call", due:""},
+ {t:"faith", n:"Tangipahoa Baptist Association", p:"Tangipahoa",
+  d:"Long-established; current contact not confirmed.", c:"—", s:"call", due:""},
+ {t:"faith", n:"Confirm the Catholic diocesan split", p:"All eight",
+  d:"Diocese of Baton Rouge covers the capital-area parishes; the Archdiocese of New Orleans covers the Northshore. Verify the line before writing to either — sending a Northshore request to the wrong chancery loses a month.",
+  c:"—", s:"call", due:""},
+ {t:"faith", n:"Find the ministerial alliances", p:"All eight",
+  d:"AME, CME, COGIC districts and local pastors' councils are not published online. Ask the clerk of court or the Council on Aging — in parishes this size they always know who convenes the pastors.",
+  c:"Ask during the clerk and aging calls", s:"call", due:""},
+ {t:"faith", n:"Offer Veterans Recognition Sunday", p:"All eight",
+  d:"For the Sunday nearest Veterans Day. You supply the certificates and the Guardian Light tribute; the pastor supplies the pulpit. Then park the M-TOC in the lot after service — the highest-conversion deployment available to you.",
+  c:"Internal — pair with the Guardian Light memorial programme", s:"verified", due:"2026-10-15"},
+];
+
+/* ============================ STATE ============================ */
+const KEY = "lh-outreach-tracker-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { state = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+function key(it){ return it.t + "::" + it.n; }
+function get(it){
+  const k = key(it);
+  if(!state[k]) state[k] = {done:false, status:"notstarted", owner:"", when:"", note:""};
+  return state[k];
+}
+
+const STATUS_LABEL = {notstarted:"Not started", called:"Called", waiting:"Waiting on them",
+                     confirmed:"Confirmed", declined:"Declined / N/A"};
+const SRC_LABEL = {verified:["VERIFIED","v"], call:["NEEDS A CALL","c"], passed:["2027 CYCLE","p"]};
+
+let filters = {q:"", parish:"", track:"", status:"", openOnly:false, urgentOnly:false};
+
+/* ============================ RENDER ============================ */
+const app = document.getElementById("app");
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function daysTo(d){
+  if(!d) return null;
+  const t = new Date(d + "T00:00:00");
+  return Math.ceil((t - new Date(new Date().toDateString())) / 86400000);
+}
+
+function matches(it){
+  const st = get(it);
+  if(filters.openOnly && st.done) return false;
+  if(filters.urgentOnly && !it.urgent) return false;
+  if(filters.parish && it.p !== filters.parish) return false;
+  if(filters.track && it.t !== filters.track) return false;
+  if(filters.status && st.status !== filters.status) return false;
+  if(filters.q){
+    const hay = (it.n + " " + it.d + " " + it.c + " " + it.p + " " + st.owner + " " + st.note).toLowerCase();
+    if(!hay.includes(filters.q.toLowerCase())) return false;
+  }
+  return true;
+}
+
+function itemHTML(it){
+  const st = get(it);
+  const [slab, scls] = SRC_LABEL[it.s] || ["","" ];
+  const dd = daysTo(it.due);
+  let dueTag = "";
+  if(it.due){
+    const txt = dd < 0 ? "overdue" : dd === 0 ? "today" : dd + " days";
+    dueTag = '<span class="tag due">Due ' + esc(it.due) + " &middot; " + txt + "</span>";
+  }
+  return '<div class="item' + (st.done ? " done" : "") + (it.urgent && !st.done ? " urgent" : "") + '" data-k="' + esc(key(it)) + '">' +
+    '<input type="checkbox" class="cb" ' + (st.done ? "checked" : "") + '>' +
+    '<div>' +
+      '<p class="title">' + esc(it.n) + '</p>' +
+      (it.d ? '<p class="detail">' + esc(it.d) + '</p>' : "") +
+      '<div class="tags"><span class="tag">' + esc(it.p) + '</span>' +
+        '<span class="tag ' + scls + '">' + slab + '</span>' + dueTag + '</div>' +
+      (it.c && it.c !== "—" ? '<div class="contact">' + it.c + '</div>' : "") +
+      '<div class="row">' +
+        '<label>Status</label>' +
+        '<select class="stsel st-' + st.status + '">' +
+          Object.keys(STATUS_LABEL).map(k =>
+            '<option value="' + k + '"' + (st.status === k ? " selected" : "") + '>' + STATUS_LABEL[k] + '</option>').join("") +
+        '</select>' +
+        '<label>Owner</label><input class="owner" value="' + esc(st.owner) + '" placeholder="who" size="10">' +
+        '<label>Date</label><input class="when" type="date" value="' + esc(st.when) + '">' +
+        '<input class="note" value="' + esc(st.note) + '" placeholder="Notes — who you spoke to, what they said, next step">' +
+      '</div>' +
+    '</div></div>';
+}
+
+function render(){
+  let html = "";
+  TRACKS.forEach(tr => {
+    const all  = ITEMS.filter(i => i.t === tr.id);
+    const show = all.filter(matches);
+    const done = all.filter(i => get(i).done).length;
+    const pct  = all.length ? Math.round(done / all.length * 100) : 0;
+    if(!show.length && (filters.q || filters.parish || filters.track || filters.status || filters.openOnly || filters.urgentOnly)) return;
+    html += '<section class="track">' +
+      '<div class="thead"><h2>' + tr.name + '</h2><span class="n">' + done + " of " + all.length + " done &middot; " + pct + '%</span></div>' +
+      '<p class="tdesc">' + tr.desc + '</p>' +
+      '<div class="pbar"><i style="width:' + pct + '%"></i></div>' +
+      (show.length ? show.map(itemHTML).join("") : '<div class="empty">Nothing here matches the filter.</div>') +
+      '</section>';
+  });
+  app.innerHTML = html || '<div class="empty" style="margin-top:30px">Nothing matches those filters. Clear them to see the list.</div>';
+  stats();
+}
+
+function stats(){
+  const done = ITEMS.filter(i => get(i).done).length;
+  const pct  = Math.round(done / ITEMS.length * 100);
+  const C = 2 * Math.PI * 41;
+  document.getElementById("ringArc").setAttribute("stroke-dashoffset", C - C * pct / 100);
+  document.getElementById("ringPct").textContent = pct + "%";
+  document.getElementById("mDone").textContent   = done;
+  document.getElementById("mOpen").textContent   = ITEMS.length - done;
+  document.getElementById("mUrgent").textContent = ITEMS.filter(i => i.urgent && !get(i).done).length;
+}
+
+function deadlines(){
+  const urgent = ITEMS.filter(i => i.urgent && i.due).sort((a,b) => a.due.localeCompare(b.due));
+  document.getElementById("deadlines").innerHTML = urgent.map(i => {
+    const st = get(i), d = daysTo(i.due);
+    const label = st.done ? "BOOKED" : (d < 0 ? "PASSED" : d + "");
+    return '<div class="dl' + (st.done ? " ok" : "") + '">' +
+      '<div class="t">' + esc(i.n.replace(/ —.*$/, "")) + '</div>' +
+      '<div class="w">' + esc(i.p) + " &middot; " + esc(i.due) + '</div>' +
+      '<div class="cd">' + label + (st.done || d < 0 ? "" : ' <small>days left</small>') + '</div>' +
+      '</div>';
+  }).join("");
+}
+
+/* ============================ EVENTS ============================ */
+app.addEventListener("change", e => {
+  const box = e.target.closest(".item"); if(!box) return;
+  const st = state[box.dataset.k];
+  if(e.target.classList.contains("cb"))     st.done   = e.target.checked;
+  if(e.target.classList.contains("stsel")){ st.status = e.target.value;
+    if(e.target.value === "confirmed") st.done = true; }
+  if(e.target.classList.contains("when"))   st.when   = e.target.value;
+  save(); render(); deadlines();
+});
+app.addEventListener("input", e => {
+  const box = e.target.closest(".item"); if(!box) return;
+  const st = state[box.dataset.k];
+  if(e.target.classList.contains("owner")) st.owner = e.target.value;
+  if(e.target.classList.contains("note"))  st.note  = e.target.value;
+  save();
+});
+
+document.getElementById("q").addEventListener("input", e => { filters.q = e.target.value; render(); });
+["fParish","fTrack","fStatus"].forEach(id => {
+  document.getElementById(id).addEventListener("change", e => {
+    filters[id === "fParish" ? "parish" : id === "fTrack" ? "track" : "status"] = e.target.value;
+    render();
+  });
+});
+document.getElementById("cOpen").addEventListener("click", e => {
+  filters.openOnly = !filters.openOnly; e.target.classList.toggle("on", filters.openOnly); render(); });
+document.getElementById("cUrgent").addEventListener("click", e => {
+  filters.urgentOnly = !filters.urgentOnly; e.target.classList.toggle("on", filters.urgentOnly); render(); });
+document.getElementById("bPrint").addEventListener("click", () => window.print());
+
+document.getElementById("bReset").addEventListener("click", () => {
+  if(confirm("Clear every tick, owner, date and note? This cannot be undone.")){
+    state = {}; save(); render(); deadlines();
+  }
+});
+
+function download(name, text, type){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:type}));
+  a.download = name; a.click(); URL.revokeObjectURL(a.href);
+}
+document.getElementById("bCsv").addEventListener("click", () => {
+  const q = s => '"' + String(s == null ? "" : s).replace(/"/g,'""') + '"';
+  const rows = [["Track","Item","Parish","Source","Due","Done","Status","Owner","Date actioned","Notes"]];
+  ITEMS.forEach(i => {
+    const st = get(i), tr = TRACKS.find(t => t.id === i.t);
+    rows.push([tr.name, i.n, i.p, (SRC_LABEL[i.s]||[""])[0], i.due,
+               st.done ? "YES" : "no", STATUS_LABEL[st.status], st.owner, st.when, st.note]);
+  });
+  download("outreach-tracker.csv", rows.map(r => r.map(q).join(",")).join("\r\n"), "text/csv");
+});
+document.getElementById("bJson").addEventListener("click", () =>
+  download("outreach-tracker-progress.json", JSON.stringify(state, null, 1), "application/json"));
+document.getElementById("bLoad").addEventListener("click", () => document.getElementById("fileIn").click());
+document.getElementById("fileIn").addEventListener("change", e => {
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => { try { state = JSON.parse(r.result); save(); render(); deadlines(); }
+                     catch(err){ alert("That file could not be read."); } };
+  r.readAsText(f);
+});
+
+/* ============================ INIT ============================ */
+[...new Set(ITEMS.map(i => i.p))].sort().forEach(p => {
+  const o = document.createElement("option"); o.value = o.textContent = p;
+  document.getElementById("fParish").appendChild(o);
+});
+TRACKS.forEach(t => {
+  const o = document.createElement("option"); o.value = t.id; o.textContent = t.name;
+  document.getElementById("fTrack").appendChild(o);
+});
+ITEMS.forEach(get);
+save();
+render();
+deadlines();
+</script>
+<footer><div class="wrap">
+  <div><div class="t">Planting Flags; Nurturing Families; Harvesting Legacies.</div>
+    <div class="s">A veteran-centered ecosystem serving rural Louisiana &mdash; Region 9 and the Florida Parishes.<br>
+    Eagle Enterprises Consortium, L3C &middot; Lighthouse Community Development Corporation &middot;
+    RV3 Vanguard of Valor Foundation &middot; Guardian Angels Enterprises, L3C</div>
+    <div class="s" style="margin-top:12px"><a href="tel:5045051512">(504) 505-1512</a> &middot;
+    <a href="mailto:info@lighthouseruralcommunities.org">info@lighthouseruralcommunities.org</a></div></div>
+  <div class="fnav"><div class="t" style="font-size:13px">This site</div><a href="index.html">Strategy</a><a href="parishes.html">The 8 Parishes</a><a href="events.html">Events & Tables</a><a href="contacts.html">Contacts</a><a href="media.html">Media & Marketing</a><a href="tracker.html">Tracker</a>
+    <a href="https://www.lighthouseruralcommunities.org" target="_blank" rel="noopener">Main site &#8599;</a></div>
+</div></footer>
+<div class="disclaim"><div class="wrap">Working document. Contacts marked <b>NEEDS A CALL</b> were not published
+online &mdash; verify by phone before printing or promising anything. Programme figures shown on the main
+Lighthouse site are pilot/demonstration data and must not be repeated as verified outcomes.
+Researched 28 July 2026.</div></div>
+</body></html>
